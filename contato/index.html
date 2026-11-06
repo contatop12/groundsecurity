@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Contato | Ground Security Systems em São Paulo</title>
+    <meta name="description" content="Fale com a Ground Security: WhatsApp (11) 94790-1159, telefone (11) 3822-2430. Av. Marquês de São Vicente, 587, Barra Funda, São Paulo. Atendemos todo o Brasil.">
+    <link rel="canonical" href="{{url}}/contato/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{url}}/contato/">
+    <meta property="og:title" content="Contato | Ground Security Systems">
+    <meta property="og:description" content="WhatsApp, telefone, e-mail e endereço da Ground Security em São Paulo.">
+    <meta name="twitter:title" content="Contato | Ground Security Systems">
+    <meta name="twitter:description" content="WhatsApp (11) 94790-1159 e telefone (11) 3822-2430.">
+<!-- @include head -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ContactPage",
+          "@id": "{{url}}/contato/#pagina",
+          "url": "{{url}}/contato/",
+          "name": "Contato da Ground Security Systems",
+          "inLanguage": "pt-BR",
+          "isPartOf": { "@id": "{{url}}/#site" },
+          "about": { "@id": "{{url}}/#organizacao" },
+          "mainEntity": { "@id": "{{url}}/#organizacao" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Início", "item": "{{url}}/" },
+            { "@type": "ListItem", "position": 2, "name": "Contato", "item": "{{url}}/contato/" }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+<!-- @include header -->
+
+    <main id="conteudo">
+      <section class="page-hero" aria-labelledby="titulo">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Trilha de navegação">
+            <ol><li><a href="/">Início</a></li><li><span aria-current="page">Contato</span></li></ol>
+          </nav>
+          <div class="contact-grid">
+            <div>
+              <p class="kicker hero-in">Atendimento em todo o Brasil</p>
+              <h1 id="titulo" class="hero-in">Fale com a Ground Security</h1>
+              <p class="lead hero-in" style="margin-block: 22px 40px">Envie uma mensagem pelo formulário ou use os canais abaixo. Teremos prazer em atender você.</p>
+
+              <address class="nap hero-in">
+                <div class="nap__row"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-wa"/></svg><div><span class="nap__label">WhatsApp</span><a href="{{wa}}" target="_blank" rel="noopener" data-track="whatsapp-contato">{{whatsapp}}</a></div></div>
+                <div class="nap__row"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><div><span class="nap__label">Telefone</span><a href="{{phoneHref}}" data-track="telefone-contato">{{phone}}</a></div></div>
+                <div class="nap__row"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><div><span class="nap__label">E-mail</span><a href="mailto:{{email}}">{{email}}</a></div></div>
+                <div class="nap__row"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><div><span class="nap__label">Endereço</span>{{street}}<br>{{district}}, {{city}} – {{state}}, CEP {{cep}}</div></div>
+              </address>
+            </div>
+
+            <div class="contact-card hero-in">
+              <h2 class="t-h3" style="margin-bottom: 8px">Envie sua mensagem</h2>
+              <p style="color: var(--text-soft); margin-bottom: 24px; font-size: var(--fs-s)">Ao enviar, abrimos o WhatsApp com a sua mensagem pronta para o nosso time comercial.</p>
+              <form class="form" data-wa-form novalidate>
+                <div class="form__row">
+                  <div class="field">
+                    <label for="c-nome">Nome</label>
+                    <input id="c-nome" name="nome" type="text" autocomplete="name" required placeholder="Seu nome">
+                    <p class="field__error" aria-live="polite"></p>
+                  </div>
+                  <div class="field">
+                    <label for="c-tel">Telefone ou WhatsApp</label>
+                    <input id="c-tel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(11) 90000-0000">
+                    <p class="field__error" aria-live="polite"></p>
+                  </div>
+                </div>
+                <div class="form__row">
+                  <div class="field">
+                    <label for="c-email">E-mail <span class="opt">(opcional)</span></label>
+                    <input id="c-email" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com.br">
+                  </div>
+                  <div class="field">
+                    <label for="c-empresa">Empresa <span class="opt">(opcional)</span></label>
+                    <input id="c-empresa" name="empresa" type="text" autocomplete="organization" placeholder="Nome da empresa">
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="c-solucao">Assunto</label>
+                  <select id="c-solucao" name="solucao">
+                    <option value="">Quero orientação para escolher a solução</option>
+                    <option>Controle de acesso</option>
+                    <option>Projetos de CFTV</option>
+                    <option>Detecção e combate a incêndio</option>
+                    <option>Equipamentos, instalação e treinamentos</option>
+                    <option>Inspeção de raio-X em aeroportos</option>
+                    <option>Manutenção de sistema existente</option>
+                    <option>Outro assunto</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="c-msg">Mensagem <span class="opt">(opcional)</span></label>
+                  <textarea id="c-msg" name="mensagem" rows="4" placeholder="Conte sobre o ambiente, a quantidade de acessos ou câmeras e o prazo"></textarea>
+                </div>
+                <div class="cluster" style="--gap: 16px">
+                  <button class="btn btn--wa btn--lg" type="submit" data-track="whatsapp-formulario-contato"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-wa"/></svg><span>Enviar pelo WhatsApp</span></button>
+                  <p class="form__status" role="status" aria-live="polite"></p>
+                </div>
+                <p class="form__note">Usamos seus dados apenas para responder a este contato. Veja a <a href="/politica-de-privacidade/">política de privacidade</a>. Prefere e-mail? Escreva para <a href="mailto:{{email}}">{{email}}</a>.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight" aria-labelledby="localizacao">
+        <div class="container">
+          <div class="partners__head">
+            <h2 id="localizacao" style="font-size: var(--fs-2xl)">Localização</h2>
+            <a class="link" href="{{mapsLink}}" target="_blank" rel="noopener">Abrir rota no Google Maps</a>
+          </div>
+          <div class="map map--wide" data-map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.2956513383792!2d-46.66813948554403!3d-23.521866466018867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5800b412000f%3A0x32912409a2faaf3c!2sGround+Security+Systems!5e0!3m2!1spt-BR!2sbr!4v1563890955310!5m2!1spt-BR!2sbr">
+            <div class="map__facade">
+              <svg class="icon map__pin" aria-hidden="true"><use href="#i-pin"/></svg>
+              <p>{{street}}, {{district}}, {{city}} – {{state}}</p>
+              <button class="btn btn--light" type="button" data-map-load>Carregar mapa interativo</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+<!-- @include footer -->
+  </body>
+</html>

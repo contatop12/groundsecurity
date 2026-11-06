@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Movimento — um gesto da marca (faixas do domo) aplicado com moderação.
+   Tudo é desligado em prefers-reduced-motion.
+   ========================================================================== */
+
+/* 1) Entrada do hero: faixas do domo deslizam de lados opostos, depois uma varredura */
+.js .dome--animate .dome__layer--a span { animation: band-from-left 1.15s var(--ease-out) both; animation-delay: calc(var(--i) * 85ms + 120ms); }
+.js .dome--animate .dome__layer--b span { animation: band-from-right 1.15s var(--ease-out) both; animation-delay: calc(var(--i) * 85ms + 220ms); }
+.js .dome--animate .dome__scan { animation: dome-scan 2.4s var(--ease-io) 1.5s both; }
+@keyframes band-from-left { from { transform: translateX(-104%); } }
+@keyframes band-from-right { from { transform: translateX(104%); } }
+@keyframes dome-scan { 0% { opacity: 0; transform: translateY(-100%); } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translateY(460%); } }
+
+/* Parallax ao rolar: as faixas se afastam (TS define --hero-p de 0 a 1) */
+.dome__layer span { translate: 0 calc(var(--hero-p, 0) * (var(--i) - 2) * 7px); }
+.dome__layer--b { translate: calc(var(--hero-p, 0) * 14px) 0; }
+
+.js .hero-in { opacity: 0; transform: translateY(18px); animation: rise 0.9s var(--ease-out) forwards; }
+.js .hero-in:nth-child(1) { animation-delay: 0.05s; }
+.js .hero-in:nth-child(2) { animation-delay: 0.12s; }
+.js .hero-in:nth-child(3) { animation-delay: 0.22s; }
+.js .hero-in:nth-child(4) { animation-delay: 0.32s; }
+.js .hero-in:nth-child(5) { animation-delay: 0.42s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+/* O H1 (provável LCP) não fica invisível: só desliza, sem opacidade 0 */
+.js h1.hero-in { opacity: 1; animation-name: rise-only; }
+@keyframes rise-only { from { transform: translateY(18px); } to { transform: none; } }
+
+/* 2) Revelação ao rolar */
+.js [data-reveal] { transition: opacity 0.8s var(--ease-out), transform 0.9s var(--ease-out); transition-delay: var(--delay, 0s); }
+.js [data-reveal='rise']:not(.is-in) { opacity: 0; transform: translateY(28px); }
+.js [data-reveal='fade']:not(.is-in) { opacity: 0; }
+.js [data-reveal='line'] { --draw: 0; }
+.js [data-reveal='line'].is-in { --draw: 1; }
+
+/* Imagens reveladas por faixas (cortinas que recolhem para lados alternados) */
+.reveal-bands { position: absolute; inset: 0; z-index: 2; display: grid; grid-template-rows: repeat(5, 1fr); pointer-events: none; }
+.reveal-bands i { display: block; background: var(--band-cover, var(--mist-100)); transform-origin: right; transition: transform 1s var(--ease-io); }
+.reveal-bands i:nth-child(even) { transform-origin: left; }
+.reveal-bands i:nth-child(1) { transition-delay: 0s; }
+.reveal-bands i:nth-child(2) { transition-delay: 0.07s; }
+.reveal-bands i:nth-child(3) { transition-delay: 0.14s; }
+.reveal-bands i:nth-child(4) { transition-delay: 0.21s; }
+.reveal-bands i:nth-child(5) { transition-delay: 0.28s; }
+.is-in > .reveal-bands i { transform: scaleX(0); }
+[data-reveal='bands'] img { transition: transform 1.6s var(--ease-out); }
+.js [data-reveal='bands']:not(.is-in) img { transform: scale(1.08); }
+
+/* Linhas que se desenham (lista de dores, cabeçalhos) */
+.pain__list li::before { transform-origin: left; transform: scaleX(var(--draw, 1)); transition: transform 0.9s var(--ease-out) var(--delay, 0s); }
+
+/* 3) Respeito a quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
+  .clients .marquee__track li::after { display: none; }
+  .clients .marquee__track { column-gap: 32px; }
+  .marquee__track { animation: none !important; flex-wrap: wrap; justify-content: center; width: auto; row-gap: 20px; padding-inline: var(--gutter); }
+  .marquee__track > [aria-hidden='true'] { display: none !important; }
+  .marquee { mask-image: none; -webkit-mask-image: none; }
+  .dome__layer span, .dome__layer--b { translate: none !important; }
+  .reveal-bands { display: none; }
+}

@@ -1,0 +1,5 @@
+/* Ground Security Systems — folha principal (Vite agrupa e minifica) */
+@import './base.css';
+@import './components.css';
+@import './sections.css';
+@import './motion.css';

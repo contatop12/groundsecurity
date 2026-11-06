@@ -1,0 +1,34 @@
+# Ground Security Systems
+
+> Integradora de segurança eletrônica fundada em 1993 em São Paulo (SP), Brasil. Projeta, fornece, instala e mantém sistemas de controle de acesso, CFTV (videomonitoramento), detecção e combate a incêndio e inspeção de bagagens por raio-X para empresas de grande porte, multinacionais, aeroportos, data centers e condomínios de alto padrão, com atendimento em todo o Brasil.
+
+Fatos principais:
+
+- Fundação: 1993, em São Paulo. Sede: Av. Marquês de São Vicente, 587, Cj. 01, Barra Funda, São Paulo – SP, CEP 01139-001.
+- Contato: telefone +55 (11) 3822-2430; WhatsApp +55 (11) 94790-1159; e-mail groundsecurity@groundsecurity.com.br.
+- Credenciais: VAR certificada Lenel (OnGuard) desde 2016; integradora credenciada Software House (C•CURE 9000, Johnson Controls/Tyco) desde 2014.
+- Projetos de incêndio certificados UL/FM e elaborados conforme NFPA, ABNT e seguradoras.
+- Clientes citados no portfólio: Serasa Experian, Nestlé Brasil, Cacau Show (IBAC Alimentos), Hinode Cosméticos, Copa Energia, FS Bioenergia, GRU Airport e Aena (6 aeroportos do Nordeste).
+- Reconhecimentos: Revista INFRA, “a empresa que fez a diferença em 2019” (indicação da Serasa Experian); integradora premiada pela Johnson Controls entre os melhores parceiros da América Latina em 2018; presença na ISC West 2023, em Las Vegas.
+
+## Soluções
+
+- [Controle de acesso](https://groundsecurity.com.br/solucoes/controle-de-acesso/): catracas, torniquetes, portas e cancelas com cartão, biometria, reconhecimento facial ou celular; plataformas Lenel OnGuard, Software House C•CURE 9000 e Invenzi W Access.
+- [Projetos de CFTV](https://groundsecurity.com.br/solucoes/projetos-de-cftv/): câmeras IP, speed dome, térmicas e infravermelho, NVR, VMS (Digifort, IndigoVision, exacqVision) e centrais de controle operacional com video wall.
+- [Detecção e combate a incêndio](https://groundsecurity.com.br/solucoes/combate-a-incendio/): detecção, alarme e supressão com projetos UL/FM conforme NFPA e ABNT, e manutenção preventiva e corretiva.
+- [Equipamentos, instalação e treinamentos](https://groundsecurity.com.br/solucoes/instalacao-e-treinamentos/): venda e locação de equipamentos, instalação, configuração e treinamento de operadores de segurança e controle de acesso.
+- [Inspeção de raio-X em aeroportos](https://groundsecurity.com.br/solucoes/inspecao-de-raio-x-em-aeroporto/): scanners de raio-X para bagagem de mão em aeroportos e áreas controladas (desde 2023).
+
+## Empresa
+
+- [Sobre e linha do tempo (1993–2023)](https://groundsecurity.com.br/sobre/)
+- [Portfólio de projetos](https://groundsecurity.com.br/portfolio/)
+- [Certificações e fabricantes](https://groundsecurity.com.br/certificados/)
+- [Imprensa e eventos](https://groundsecurity.com.br/imprensa-e-eventos/)
+- [Contato](https://groundsecurity.com.br/contato/)
+
+## Optional
+
+- [Conteúdo completo em texto](https://groundsecurity.com.br/llms-full.txt)
+- [Matéria da Revista INFRA 2019 (PDF)](https://groundsecurity.com.br/docs/revista-infra-2019.pdf)
+- [Política de privacidade](https://groundsecurity.com.br/politica-de-privacidade/)

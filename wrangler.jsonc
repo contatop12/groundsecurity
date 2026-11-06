@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Deve ser igual ao nome do Worker no painel da Cloudflare (Workers e Pages → groundsecurity)
+  "name": "groundsecurity",
+  "compatibility_date": "2026-11-06",
+  // Site 100% estático: sem script de Worker, só os arquivos gerados pelo Vite.
+  // Cabeçalhos e redirecionamentos ficam em public/_headers e public/_redirects.
+  "assets": {
+    "directory": "./dist",
+    // URL inexistente → conteúdo de /404.html com status 404
+    "not_found_handling": "404-page",
+    // /sobre → 301 para /sobre/ (mesmo formato das URLs canônicas e do sitemap)
+    "html_handling": "auto-trailing-slash"
+  }
+}

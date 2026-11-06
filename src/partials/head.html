@@ -1,0 +1,101 @@
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Ground Security Systems">
+    <meta name="theme-color" content="#022a3f">
+    <meta name="color-scheme" content="light">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="geo.region" content="BR-SP">
+    <meta name="geo.placename" content="São Paulo">
+    <meta name="geo.position" content="-23.521866;-46.668139">
+    <meta name="ICBM" content="-23.521866, -46.668139">
+    <meta property="og:site_name" content="Ground Security Systems">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:image" content="{{url}}/img/og-ground-security.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Ground Security Systems: segurança eletrônica sob medida para operações que não podem parar">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{url}}/img/og-ground-security.jpg">
+
+    <!-- Pré-carregamento: fonte única (47 KB) e conexões -->
+    <link rel="preload" href="/fonts/archivo-pt-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="dns-prefetch" href="https://wa.me">
+    <link rel="dns-prefetch" href="https://www.google.com">
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+    <script>document.documentElement.classList.add('js')</script>
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <script type="module" src="/src/ts/main.ts"></script>
+
+    <!-- Navegação instantânea: pré-renderiza páginas internas quando o usuário demonstra intenção -->
+    <script type="speculationrules">
+    {
+      "prerender": [{ "where": { "and": [{ "href_matches": "/*" }, { "not": { "href_matches": "/docs/*" } }] }, "eagerness": "moderate" }],
+      "prefetch": [{ "where": { "href_matches": "/*" }, "eagerness": "conservative" }]
+    }
+    </script>
+
+    <!-- Entidade principal (mesmo @id em todas as páginas) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Organization", "LocalBusiness"],
+          "@id": "{{url}}/#organizacao",
+          "name": "Ground Security Systems",
+          "alternateName": "Ground Security",
+          "slogan": "Sempre em alerta máximo por você",
+          "description": "Integradora de segurança eletrônica fundada em 1993 em São Paulo. Projeta, instala e mantém sistemas de controle de acesso, CFTV, detecção e combate a incêndio e inspeção por raio-X para empresas, aeroportos, data centers e condomínios em todo o Brasil.",
+          "url": "{{url}}/",
+          "logo": { "@type": "ImageObject", "url": "{{url}}/img/marca/logo-ground-security.png", "width": 228, "height": 200 },
+          "image": "{{url}}/img/og-ground-security.jpg",
+          "foundingDate": "1993",
+          "foundingLocation": { "@type": "Place", "name": "São Paulo, SP, Brasil" },
+          "telephone": "+55-11-3822-2430",
+          "email": "groundsecurity@groundsecurity.com.br",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Marquês de São Vicente, 587, Cj. 01",
+            "addressLocality": "São Paulo",
+            "addressRegion": "SP",
+            "postalCode": "01139-001",
+            "addressCountry": "BR"
+          },
+          "geo": { "@type": "GeoCoordinates", "latitude": -23.521866, "longitude": -46.668139 },
+          "hasMap": "{{mapsLink}}",
+          "areaServed": { "@type": "Country", "name": "Brasil" },
+          "contactPoint": [
+            { "@type": "ContactPoint", "contactType": "sales", "telephone": "+55-11-3822-2430", "areaServed": "BR", "availableLanguage": ["Portuguese"] },
+            { "@type": "ContactPoint", "contactType": "customer service", "telephone": "+55-11-94790-1159", "areaServed": "BR", "availableLanguage": ["Portuguese"], "url": "https://wa.me/{{waNumber}}" }
+          ],
+          "knowsAbout": ["Controle de acesso", "CFTV", "Videomonitoramento", "VMS", "Detecção e alarme de incêndio", "Combate a incêndio", "Inspeção de bagagens por raio-X", "Segurança aeroportuária", "Lenel OnGuard", "Software House C•CURE 9000", "NFPA", "Certificação UL/FM"],
+          "award": ["Revista INFRA: empresa que fez a diferença em 2019", "Johnson Controls: integrador premiado na América Latina (2018)"],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Soluções em segurança eletrônica",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@id": "{{url}}/solucoes/controle-de-acesso/#servico" } },
+              { "@type": "Offer", "itemOffered": { "@id": "{{url}}/solucoes/projetos-de-cftv/#servico" } },
+              { "@type": "Offer", "itemOffered": { "@id": "{{url}}/solucoes/combate-a-incendio/#servico" } },
+              { "@type": "Offer", "itemOffered": { "@id": "{{url}}/solucoes/instalacao-e-treinamentos/#servico" } },
+              { "@type": "Offer", "itemOffered": { "@id": "{{url}}/solucoes/inspecao-de-raio-x-em-aeroporto/#servico" } }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "{{url}}/#site",
+          "url": "{{url}}/",
+          "name": "Ground Security Systems",
+          "inLanguage": "pt-BR",
+          "publisher": { "@id": "{{url}}/#organizacao" }
+        }
+      ]
+    }
+    </script>

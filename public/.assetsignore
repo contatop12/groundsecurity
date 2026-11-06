@@ -1,0 +1,3 @@
+# Arquivos do build que não devem ser publicados no Cloudflare Workers
+# (_headers e _redirects já são lidos pelo Wrangler e não viram arquivos públicos)
+.htaccess

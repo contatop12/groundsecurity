@@ -1,0 +1,13 @@
+# Redirecionamentos — Cloudflare Workers (static assets), Pages ou Netlify (equivalente ao .htaccess)
+# www → domínio sem www não cabe aqui (a Cloudflare não aceita redirect por domínio neste arquivo):
+# use a regra de redirecionamento do painel (ver README → Publicação).
+/blog                     /imprensa-e-eventos/          301
+/blog/                    /imprensa-e-eventos/          301
+/home/                    /                             301
+/revista-infra-2019.pdf   /docs/revista-infra-2019.pdf  301
+/2019/12/11/*             /                             301
+/project/*                /portfolio/                   301
+/category/*               /                             301
+/author/*                 /sobre/                       301
+/feed/                    /                             301
+/comments/feed/           /                             301

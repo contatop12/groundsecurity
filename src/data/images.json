@@ -1,0 +1,177 @@
+{
+  "fotos": {
+    "acionador-alarme-de-incendio": {
+      "w": 1080,
+      "h": 675,
+      "widths": [
+        480,
+        800,
+        1080
+      ]
+    },
+    "camera-cftv-saguao-corporativo": {
+      "w": 566,
+      "h": 425,
+      "widths": [
+        480,
+        566
+      ]
+    },
+    "cameras-cftv-fachada": {
+      "w": 1280,
+      "h": 721,
+      "widths": [
+        480,
+        800,
+        1200,
+        1280
+      ]
+    },
+    "central-de-monitoramento-cftv": {
+      "w": 1024,
+      "h": 683,
+      "widths": [
+        480,
+        800,
+        1024
+      ]
+    },
+    "controle-de-acesso-biometria": {
+      "w": 1000,
+      "h": 450,
+      "widths": [
+        480,
+        800,
+        1000
+      ]
+    },
+    "edificios-corporativos-sao-paulo": {
+      "w": 1280,
+      "h": 852,
+      "widths": [
+        480,
+        800,
+        1200,
+        1280
+      ]
+    },
+    "encontro-johnson-controls-2019": {
+      "w": 1280,
+      "h": 854,
+      "widths": [
+        480,
+        800,
+        1200,
+        1280
+      ]
+    },
+    "inspecao-raio-x-aeroporto": {
+      "w": 2560,
+      "h": 1707,
+      "widths": [
+        480,
+        800,
+        1200,
+        1600
+      ]
+    },
+    "isc-west-2023-ground-security": {
+      "w": 3022,
+      "h": 3093,
+      "widths": [
+        480,
+        800,
+        1200
+      ]
+    },
+    "premio-revista-infra-2019": {
+      "w": 1024,
+      "h": 768,
+      "widths": [
+        480,
+        800,
+        1024
+      ]
+    },
+    "saguao-aeroporto": {
+      "w": 1280,
+      "h": 690,
+      "widths": [
+        480,
+        800,
+        1200,
+        1280
+      ]
+    }
+  },
+  "marcas": {
+    "bosch": {
+      "w": 420,
+      "h": 113
+    },
+    "control-id": {
+      "w": 420,
+      "h": 72
+    },
+    "digifort": {
+      "w": 420,
+      "h": 115
+    },
+    "furukawa": {
+      "w": 420,
+      "h": 104
+    },
+    "hikvision": {
+      "w": 420,
+      "h": 58
+    },
+    "indigovision": {
+      "w": 420,
+      "h": 105
+    },
+    "invenzi": {
+      "w": 420,
+      "h": 118
+    },
+    "johnson-controls-tyco": {
+      "w": 187,
+      "h": 120
+    },
+    "leccor": {
+      "w": 189,
+      "h": 120
+    },
+    "lenel-s2": {
+      "w": 420,
+      "h": 72
+    },
+    "magnetic-wolpac": {
+      "w": 168,
+      "h": 120
+    },
+    "panduit": {
+      "w": 407,
+      "h": 120
+    },
+    "simplex": {
+      "w": 420,
+      "h": 84
+    }
+  },
+  "marca": {
+    "logo-ground-security": {
+      "w": 228,
+      "h": 200,
+      "ratio": 1.1378378378378378
+    },
+    "logo-ground-security-negativo": {
+      "w": 227,
+      "h": 200,
+      "ratio": 1.1347708894878705
+    },
+    "logo-ground-1993": {
+      "w": 200,
+      "h": 170
+    }
+  }
+}

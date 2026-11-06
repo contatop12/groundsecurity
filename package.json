@@ -1,0 +1,42 @@
+{
+  "name": "groundsecurity-site",
+  "version": "2.0.0",
+  "description": "Site institucional Ground Security Systems — HTML, CSS e TypeScript (Vite)",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "cf:dev": "npm run build && wrangler dev",
+    "cf:check": "npm run build && wrangler deploy --dry-run",
+    "deploy": "npm run build && wrangler deploy",
+    "assets:fonts": "python scripts/fonts.py",
+    "assets:images": "node scripts/optimize-images.mjs",
+    "assets:videos": "node scripts/optimize-videos.mjs",
+    "assets:og": "python scripts/og-image.py",
+    "assets": "npm run assets:fonts && npm run assets:images && npm run assets:videos && npm run assets:og"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/contatop12/groundsecurity.git"
+  },
+  "author": "P12 Digital",
+  "license": "UNLICENSED",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/contatop12/groundsecurity/issues"
+  },
+  "homepage": "https://github.com/contatop12/groundsecurity#readme",
+  "devDependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@types/node": "^26.6.6",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.6",
+    "wrangler": "^4.158.0"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22.12"
+  }
+}

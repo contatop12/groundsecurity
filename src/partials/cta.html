@@ -1,0 +1,75 @@
+    <section class="section section--dark cta-band" id="contato-rapido" aria-labelledby="cta-titulo">
+      <div class="cta-band__decor" aria-hidden="true"></div>
+      <div class="container cta-band__grid">
+        <div>
+          <p class="kicker">Fale com um especialista</p>
+          <h2 id="cta-titulo" data-reveal="rise">Conte o que você precisa proteger</h2>
+          <p class="lead" style="margin-block: 20px 36px" data-reveal="rise">Um especialista da Ground analisa o ambiente, indica a solução e prepara uma proposta sob medida, sem compromisso. O formulário abre o WhatsApp com a sua mensagem pronta.</p>
+
+          <form class="form" data-wa-form novalidate>
+            <div class="form__row">
+              <div class="field">
+                <label for="cta-nome">Nome</label>
+                <input id="cta-nome" name="nome" type="text" autocomplete="name" required placeholder="Seu nome">
+                <p class="field__error" aria-live="polite"></p>
+              </div>
+              <div class="field">
+                <label for="cta-tel">Telefone ou WhatsApp</label>
+                <input id="cta-tel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(11) 90000-0000">
+                <p class="field__error" aria-live="polite"></p>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="field">
+                <label for="cta-empresa">Empresa ou condomínio <span class="opt">(opcional)</span></label>
+                <input id="cta-empresa" name="empresa" type="text" autocomplete="organization" placeholder="Nome da empresa">
+              </div>
+              <div class="field">
+                <label for="cta-solucao">Solução de interesse</label>
+                <select id="cta-solucao" name="solucao">
+                  <option value="">Ainda não sei, quero orientação</option>
+                  <option>Controle de acesso</option>
+                  <option>Projetos de CFTV</option>
+                  <option>Detecção e combate a incêndio</option>
+                  <option>Equipamentos, instalação e treinamentos</option>
+                  <option>Inspeção de raio-X em aeroportos</option>
+                  <option>Manutenção de sistema existente</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="cta-msg">Mensagem <span class="opt">(opcional)</span></label>
+              <textarea id="cta-msg" name="mensagem" rows="3" placeholder="Tipo de ambiente, quantidade de acessos ou câmeras, prazo…"></textarea>
+            </div>
+            <div class="cluster" style="--gap: 18px">
+              <button class="btn btn--wa btn--lg" type="submit" data-track="whatsapp-formulario">
+                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-wa"/></svg><span>Enviar pelo WhatsApp</span>
+              </button>
+              <p class="form__status" role="status" aria-live="polite"></p>
+            </div>
+            <p class="form__note">Usamos seus dados apenas para responder a este contato. Veja a <a href="/politica-de-privacidade/">política de privacidade</a>.</p>
+          </form>
+        </div>
+
+        <aside class="cta-band__aside" aria-label="Endereço e canais de atendimento">
+          <div class="cta-band__panel">
+            <address class="nap">
+              <div class="nap__row"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><div><span class="nap__label">Endereço</span>{{street}}<br>{{district}}, {{city}} – {{state}}<br>CEP {{cep}}</div></div>
+              <div class="nap__row"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><div><span class="nap__label">Telefone</span><a href="{{phoneHref}}" data-track="telefone-cta">{{phone}}</a></div></div>
+              <div class="nap__row"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-wa"/></svg><div><span class="nap__label">WhatsApp</span><a href="{{wa}}" target="_blank" rel="noopener" data-track="whatsapp-cta">{{whatsapp}}</a></div></div>
+              <div class="nap__row"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><div><span class="nap__label">E-mail</span><a href="mailto:{{email}}">{{email}}</a></div></div>
+            </address>
+          </div>
+          <div class="map" data-map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.2956513383792!2d-46.66813948554403!3d-23.521866466018867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5800b412000f%3A0x32912409a2faaf3c!2sGround+Security+Systems!5e0!3m2!1spt-BR!2sbr!4v1563890955310!5m2!1spt-BR!2sbr">
+            <div class="map__facade">
+              <svg class="icon map__pin" aria-hidden="true"><use href="#i-pin"/></svg>
+              <p>Sede na Barra Funda, em São Paulo. Atendimento em todo o Brasil.</p>
+              <div class="cluster" style="--gap: 10px; justify-content: center">
+                <button class="btn btn--light" type="button" data-map-load>Carregar mapa</button>
+                <a class="btn btn--outline-light" href="{{mapsLink}}" target="_blank" rel="noopener">Abrir no Google Maps</a>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
