@@ -37,6 +37,7 @@ vite.config.ts     dados do negócio (NAP), plugin de includes/<g-img>, sitemap 
 - **Partes repetidas**: `<!-- @include header -->` insere `src/partials/header.html`.
 - **Imagens**: `<g-img name="saguao-aeroporto" alt="…" sizes="…">` vira um `<picture>` com AVIF + WebP em várias larguras, `width/height` (sem CLS) e lazy-load. Use `eager` na imagem principal da página.
 - **Logos de fabricantes**: `<g-logo name="hikvision" alt="Hikvision">`.
+- **Ícones**: `<g-icon name="fence">` embute no HTML um ícone da biblioteca [Lucide](https://lucide.dev/icons) (licença ISC, uso comercial livre; nome = o do site da Lucide). `class="ico--lg"` para a versão maior. Dentro de um item com `data-reveal`, o traço se desenha ao entrar na tela.
 - **Nova foto**: coloque em `assets-src/fotos/` e rode `npm run assets:images`.
 
 ## Otimizações de mídia (pipeline em `scripts/`)

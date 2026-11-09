@@ -142,7 +142,7 @@
 .segments__list { list-style: none; padding: 0; border-top: 1px solid var(--line); }
 .segment {
   position: relative; isolation: isolate;
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 0.8fr); gap: 12px 40px; align-items: baseline;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 0.8fr); gap: 12px 40px; align-items: center;
   padding: 28px 20px; border-bottom: 1px solid var(--line);
 }
 .segment::before {
@@ -150,7 +150,11 @@
   transform: scaleY(0); transform-origin: bottom; transition: transform 0.45s var(--ease-out);
 }
 .segment:hover::before { transform: scaleY(1); }
-.segment__name { font-size: var(--fs-2xl); font-weight: 760; font-stretch: 120%; transition: transform 0.45s var(--ease-out); }
+.segment__name { display: flex; align-items: center; gap: 18px; container-type: inline-size; font-weight: 760; font-stretch: 120%; transition: transform 0.45s var(--ease-out); }
+/* texto ao lado do ícone (56px + 18px): a fonte cabe "Farmacêutica" (~8.2em) no espaço restante */
+.segment__name > span:last-child { font-size: min(var(--fs-2xl), calc((100cqi - 74px) / 8.8)); }
+.segment:hover .ico { background: var(--teal-600); color: var(--white); }
+@media (max-width: 560px) { .segment__name { gap: 14px; } .segment__name > span:last-child { font-size: min(var(--fs-2xl), calc((100cqi - 62px) / 8.8)); } }
 .segment:hover .segment__name { transform: translateX(10px); color: var(--teal-600); }
 .segment__desc { color: var(--text-soft); }
 .segment__ref { font-size: var(--fs-s); font-weight: 600; color: var(--navy-700); }
@@ -349,7 +353,10 @@
 
 /* ficha de equipamentos */
 .specs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; margin-top: 28px; }
-.specs > div { padding: 22px 0; border-top: 1px solid var(--line); }
+.specs > div { position: relative; padding: 22px 0 22px 62px; border-top: 1px solid var(--line); }
+.specs > div:nth-child(even) { --delay: 0.08s; }
+.specs dt .ico { position: absolute; left: 0; top: 20px; }
+.specs > div:hover .ico { background: var(--teal-600); color: var(--white); }
 .specs dt { font-weight: 700; font-stretch: 108%; color: var(--navy-900); font-size: var(--fs-l); margin-bottom: 6px; }
 .specs dd { font-size: var(--fs-s); color: var(--text-soft); }
 @media (max-width: 640px) { .specs { grid-template-columns: 1fr; } }

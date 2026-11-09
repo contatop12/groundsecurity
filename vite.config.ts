@@ -77,6 +77,36 @@ function brandLogo(a: Record<string, string>, man: Manifest): string {
   return `<img src="/img/marcas/${a.name}.webp" width="${m.w}" height="${m.h}" alt="${a.alt ?? ''}"${cls} loading="lazy" decoding="async">`;
 }
 
+/**
+ * <g-icon name="fence"> → ícone Lucide (ISC, lucide.dev) embutido no HTML, sem requisição extra.
+ * pathLength="1" em cada traço permite a animação de "desenho" (motion.css).
+ */
+const iconCache = new Map<string, string>();
+function icon(a: Record<string, string>): string {
+  const name = a.name ?? '';
+  let inner = iconCache.get(name);
+  if (inner === undefined) {
+    let svg: string;
+    try {
+      svg = readFileSync(path.join(ROOT, 'node_modules/lucide-static/icons', `${name}.svg`), 'utf8');
+    } catch {
+      throw new Error(`<g-icon>: ícone "${name}" não existe no lucide-static`);
+    }
+    inner = svg
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/^[\s\S]*?<svg[^>]*>/, '')
+      .replace(/<\/svg>[\s\S]*$/, '')
+      .replace(/<(path|circle|rect|line|polyline|polygon|ellipse)\s/g, '<$1 pathLength="1" ')
+      .replace(/\s*\n\s*/g, '');
+    iconCache.set(name, inner);
+  }
+  const cls = a.class ? ` ${a.class}` : '';
+  return (
+    `<span class="ico${cls}" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ` +
+    `stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false">${inner}</svg></span>`
+  );
+}
+
 function routeOf(file: string): string {
   const rel = path.relative(ROOT, file).split(path.sep).join('/');
   if (rel === 'index.html') return '/';
@@ -109,6 +139,7 @@ function sitePlugin(): Plugin {
         // 3) componentes de imagem
         html = html.replace(/<g-img\s([^>]*?)\/?>(?:<\/g-img>)?/g, (_, raw: string) => picture(attrs(raw), man));
         html = html.replace(/<g-logo\s([^>]*?)\/?>(?:<\/g-logo>)?/g, (_, raw: string) => brandLogo(attrs(raw), man));
+        html = html.replace(/<g-icon\s([^>]*?)\/?>(?:<\/g-icon>)?/g, (_, raw: string) => icon(attrs(raw)));
         // 4) navegação ativa (aria-current na página, .is-parent na seção)
         html = html.replace(/<a([^>]*?)data-route="([^"]+)"([^>]*)>/g, (_, pre: string, r: string, post: string) => {
           const exact = r === route;
