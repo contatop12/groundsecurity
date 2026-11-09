@@ -37,6 +37,7 @@ vite.config.ts     dados do negócio (NAP), plugin de includes/<g-img>, sitemap 
 - **Partes repetidas**: `<!-- @include header -->` insere `src/partials/header.html`.
 - **Imagens**: `<g-img name="saguao-aeroporto" alt="…" sizes="…">` vira um `<picture>` com AVIF + WebP em várias larguras, `width/height` (sem CLS) e lazy-load. Use `eager` na imagem principal da página.
 - **Logos de fabricantes**: `<g-logo name="hikvision" alt="Hikvision">`.
+- **Logos de clientes**: `<g-client name="nestle">` (nomes e textos alternativos em `CLIENTS`, no `vite.config.ts`). Use `decorative` quando o nome já estiver escrito ao lado, e `alt="…"` para trocar o texto. Arquivos originais e fontes em `assets-src/clientes/` (`FONTES.md`); para um cliente novo, coloque o SVG/PNG lá, rode `npm run assets:images` e acrescente o nome em `CLIENTS`.
 - **Ícones**: `<g-icon name="fence">` embute no HTML um ícone da biblioteca [Lucide](https://lucide.dev/icons) (licença ISC, uso comercial livre; nome = o do site da Lucide). `class="ico--lg"` para a versão maior. Dentro de um item com `data-reveal`, o traço se desenha ao entrar na tela.
 - **Nova foto**: coloque em `assets-src/fotos/` e rode `npm run assets:images`.
 
@@ -133,7 +134,7 @@ Itens que não existiam no site antigo e **não foram inventados**:
 2. **Redes sociais** (LinkedIn, Instagram) para `sameAs` no schema e no rodapé.
 3. **CNPJ e horário de atendimento** (rodapé e `openingHours`).
 4. **Fotos reais da equipe e de obras** — hoje as fotos são de banco de imagens do site antigo.
-5. **Logos dos clientes** (com autorização) para trocar os nomes tipográficos do marquee.
+5. **Logos dos clientes**: já aplicados (fontes em `assets-src/clientes/FONTES.md`). Falta a Ground confirmar que pode exibir cada marca e, se possível, enviar arquivos vetoriais da Hinode e do ICESP (os oficiais disponíveis são PNG pequenos).
 6. **Confirmar datas**: o portfólio antigo diz “GRU Airport desde 2015”, mas a linha do tempo diz que a atuação em aeroportos começou em 2017. O site novo usa 2017 e omite o ano no case do GRU até a confirmação.
 7. Itens removidos por falta de fonte: “CFTV reduz em até 70% os incidentes” e o equipamento “FM100” (provável FM-200) da página de incêndio.
 8. **GA4/GTM**: os cliques de WhatsApp, telefone e formulário já disparam eventos no `dataLayer` (`click_whatsapp`, `click_phone`, `generate_lead`); basta instalar o contêiner.

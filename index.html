@@ -88,14 +88,14 @@
         <h2 class="clients__title" id="clientes-titulo">Empresas e aeroportos que confiam na Ground</h2>
         <div class="marquee" data-marquee style="--speed: 40s">
           <ul class="marquee__track" role="list">
-            <li>Serasa Experian</li>
-            <li>Nestlé Brasil</li>
-            <li>GRU Airport</li>
-            <li>Aena Aeroportos do Nordeste</li>
-            <li>Hinode Cosméticos</li>
-            <li>Cacau Show</li>
-            <li>Copa Energia</li>
-            <li>FS Bioenergia</li>
+            <li><g-client name="serasa-experian"></li>
+            <li><g-client name="nestle"></li>
+            <li><g-client name="gru-airport"></li>
+            <li><g-client name="aena"></li>
+            <li><g-client name="hinode"></li>
+            <li><g-client name="cacau-show"></li>
+            <li><g-client name="copa-energia"></li>
+            <li><g-client name="fs-bioenergia"></li>
           </ul>
         </div>
       </section>
@@ -240,12 +240,12 @@
             <p class="lead" data-reveal="rise" style="--delay: .1s">Cada operação crítica tem requisitos próprios. Estes são os ambientes onde a Ground já projetou, instalou e mantém sistemas.</p>
           </div>
           <ul class="segments__list" role="list">
-            <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="plane" class="ico--lg"><span>Aeroportos</span></h3><p class="segment__desc">Controle de acesso, CFTV, transmissão via rádio e raio-X para inspeção de bagagens.</p><p class="segment__ref">GRU Airport e 6 aeroportos da Aena no Nordeste</p></li>
-            <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="factory" class="ico--lg"><span>Indústrias</span></h3><p class="segment__desc">Acesso por biometria nas fábricas, CFTV IP com sala de controle e sistemas de incêndio.</p><p class="segment__ref">Nestlé, Hinode e Cacau Show</p></li>
-            <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="hospital" class="ico--lg"><span>Farmacêutica e hospitalar</span></h3><p class="segment__desc">Detecção e combate a incêndio com manutenção preventiva em ambientes de alto risco.</p><p class="segment__ref">Bayer e Instituto do Câncer de São Paulo</p></li>
-            <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="server" class="ico--lg"><span>Data centers</span></h3><p class="segment__desc">Controle de acesso a salas críticas e videomonitoramento com rastreabilidade completa.</p><p class="segment__ref">Data rooms da Nestlé em 6 estados</p></li>
+            <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="plane" class="ico--lg"><span>Aeroportos</span></h3><p class="segment__desc">Controle de acesso, CFTV, transmissão via rádio e raio-X para inspeção de bagagens.</p><div class="segment__ref"><ul class="client-row" role="list"><li><g-client name="gru-airport"></li><li><g-client name="aena"></li></ul><p>e mais 6 aeroportos no Nordeste</p></div></li>
+            <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="factory" class="ico--lg"><span>Indústrias</span></h3><p class="segment__desc">Acesso por biometria nas fábricas, CFTV IP com sala de controle e sistemas de incêndio.</p><div class="segment__ref"><ul class="client-row" role="list"><li><g-client name="nestle"></li><li><g-client name="hinode"></li><li><g-client name="cacau-show"></li></ul></div></li>
+            <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="hospital" class="ico--lg"><span>Farmacêutica e hospitalar</span></h3><p class="segment__desc">Detecção e combate a incêndio com manutenção preventiva em ambientes de alto risco.</p><div class="segment__ref"><ul class="client-row" role="list"><li><g-client name="bayer"></li><li><g-client name="icesp"></li></ul></div></li>
+            <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="server" class="ico--lg"><span>Data centers</span></h3><p class="segment__desc">Controle de acesso a salas críticas e videomonitoramento com rastreabilidade completa.</p><div class="segment__ref"><ul class="client-row" role="list"><li><g-client name="nestle"></li></ul><p>Data rooms em 6 estados</p></div></li>
             <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="warehouse" class="ico--lg"><span>Centros de distribuição</span></h3><p class="segment__desc">Gestão de fluxo em portarias, docas e perímetro, com CFTV e controle de acesso integrados.</p><p class="segment__ref">Cancelas, CFTV e proteção perimetral</p></li>
-            <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="briefcase-business" class="ico--lg"><span>Escritórios e serviços</span></h3><p class="segment__desc">Unidades em várias cidades com o mesmo padrão de acesso, imagem e manutenção.</p><p class="segment__ref">Serasa Experian, Copa Energia e FS Bioenergia</p></li>
+            <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="briefcase-business" class="ico--lg"><span>Escritórios e serviços</span></h3><p class="segment__desc">Unidades em várias cidades com o mesmo padrão de acesso, imagem e manutenção.</p><div class="segment__ref"><ul class="client-row" role="list"><li><g-client name="serasa-experian"></li><li><g-client name="copa-energia"></li><li><g-client name="fs-bioenergia"></li></ul></div></li>
             <li class="segment" data-reveal="rise"><h3 class="segment__name"><g-icon name="building" class="ico--lg"><span>Condomínios de alto padrão</span></h3><p class="segment__desc">Portarias com controle de acesso, CFTV e alarme para condomínios residenciais e comerciais de grande porte.</p><p class="segment__ref">Projetos para condomínios desde 1998</p></li>
           </ul>
         </div>
@@ -260,32 +260,32 @@
           </div>
           <div class="cases__grid">
             <article class="case" data-reveal="rise">
-              <header class="case__head"><h3>Hinode Cosméticos</h3><p class="case__where">Nova fábrica em Itapevi (SP)</p></header>
+              <header class="case__head"><h3 class="case__brand"><g-client name="hinode"></h3><p class="case__where">Nova fábrica em Itapevi (SP)</p></header>
               <p class="case__metric"><span class="num" data-count="130">130</span><span>câmeras IP de 2 MP no VMS Digifort, com sala de controle</span></p>
               <p class="case__text">Controle de acesso LENEL OnGuard com biometria e proximidade em torniquetes, catracas e portas, anti-intrusão DSC e combate a incêndio.</p>
               <ul class="tags"><li>Lenel OnGuard</li><li>Digifort</li><li>DSC</li><li>Incêndio</li></ul>
             </article>
             <article class="case" data-reveal="rise" style="--delay: .1s">
-              <header class="case__head"><h3>Aena Aeroportos do Nordeste</h3><p class="case__where">Recife, Maceió, João Pessoa, Aracaju, Juazeiro do Norte e Campina Grande</p></header>
+              <header class="case__head"><h3 class="case__brand"><g-client name="aena"></h3><p class="case__where">Recife, Maceió, João Pessoa, Aracaju, Juazeiro do Norte e Campina Grande</p></header>
               <p class="case__metric"><span class="num" data-count="6">6</span><span>aeroportos com VMS e controle de acesso de grande porte</span></p>
               <p class="case__text">Fornecimento e instalação de VMS Digifort com câmeras Hikvision e controle de acesso Invenzi.</p>
               <ul class="tags"><li>Digifort</li><li>Hikvision</li><li>Invenzi</li></ul>
             </article>
             <article class="case" data-reveal="rise">
-              <header class="case__head"><h3>Nestlé Brasil</h3><p class="case__where">Data rooms das fábricas em SP, RJ, BA, ES, GO e MG</p></header>
+              <header class="case__head"><h3 class="case__brand"><g-client name="nestle"></h3><p class="case__where">Data rooms das fábricas em SP, RJ, BA, ES, GO e MG</p></header>
               <p class="case__metric"><span class="num" data-count="10" data-suffix="+">10+</span><span>países no mesmo projeto global, executado simultaneamente</span></p>
               <p class="case__text">Controle de acesso Software House C•CURE 9000 com leitoras STid, integrado ao banco de dados central em Phoenix (EUA).</p>
               <ul class="tags"><li>C•CURE 9000</li><li>STid</li><li>Integração global</li></ul>
             </article>
             <article class="case" data-reveal="rise" style="--delay: .1s">
-              <header class="case__head"><h3>Serasa Experian</h3><p class="case__where">Todas as unidades do Brasil</p></header>
+              <header class="case__head"><h3 class="case__brand"><g-client name="serasa-experian"></h3><p class="case__where">Todas as unidades do Brasil</p></header>
               <p class="case__metric"><span class="num" data-count="4">4</span><span>sistemas fornecidos e mantidos com manutenção preventiva e corretiva</span></p>
               <p class="case__text">Controle de acesso Software House (C•CURE 9000), VMS exacqVision, alarme DSC e detecção e combate a incêndio Simplex.</p>
               <ul class="tags"><li>C•CURE 9000</li><li>exacqVision</li><li>DSC</li><li>Simplex</li></ul>
             </article>
           </div>
           <div class="cases__foot">
-            <p>Também atendemos GRU Airport, Cacau Show, Copa Energia e FS Bioenergia.</p>
+            <div class="cases__also"><p>Também atendemos</p><ul class="client-row client-row--chips" role="list"><li><g-client name="gru-airport"></li><li><g-client name="cacau-show"></li><li><g-client name="copa-energia"></li><li><g-client name="fs-bioenergia"></li></ul></div>
             <a class="btn btn--light" href="/portfolio/">Ver o portfólio completo</a>
           </div>
         </div>
@@ -345,7 +345,7 @@
             <li class="milestone"><span class="milestone__year num">2006</span><h3>Revenda Siemens</h3><p>Convite para revenda autorizada, pelo atendimento e pela satisfação dos clientes.</p></li>
             <li class="milestone"><span class="milestone__year num">2009</span><h3>Áreas portuárias</h3><p>Controle de acesso em portos e atendimento em todo o território nacional.</p></li>
             <li class="milestone"><span class="milestone__year num">2014</span><h3>Software House</h3><p>Integradora credenciada Tyco Software House, com American Dynamics, IndigoVision, Axis e Illustra no portfólio.</p></li>
-            <li class="milestone"><span class="milestone__year num">2015</span><h3>Incêndio</h3><p>Detecção e combate a incêndio, com contratos de manutenção na Bayer, na Hinode e no Instituto do Câncer de São Paulo.</p></li>
+            <li class="milestone"><span class="milestone__year num">2015</span><h3>Incêndio</h3><p>Detecção e combate a incêndio, com contratos de manutenção na Bayer, na Hinode e no Instituto do Câncer de São Paulo.</p><ul class="client-row" role="list"><li><g-client name="bayer" decorative></li><li><g-client name="hinode" decorative></li><li><g-client name="icesp" decorative></li></ul></li>
             <li class="milestone"><span class="milestone__year num">2016</span><h3>VAR Lenel</h3><p>Certificação internacional Lenel: as duas maiores plataformas de gestão de acesso do mercado.</p></li>
             <li class="milestone"><span class="milestone__year num">2017</span><h3>Aeroportos</h3><p>Projetos de acesso, CFTV e transmissão via rádio no maior aeroporto da América Latina.</p></li>
             <li class="milestone"><span class="milestone__year num">2018</span><h3>Nova identidade</h3><p>Modernização de toda a comunicação visual da empresa.</p></li>
@@ -370,7 +370,7 @@
             </article>
             <article class="press__item" data-reveal="rise" style="--delay: .1s">
               <figure><g-img name="premio-revista-infra-2019" alt="Executivos da Ground Security recebem o troféu da Revista INFRA" sizes="(min-width: 860px) 50vw, 100vw"></figure>
-              <div class="press__body"><p class="press__year">2019</p><h3>Revista INFRA: a empresa que fez a diferença</h3><p>Indicação da Serasa Experian, cliente atendida desde 2016 com instalação e manutenção de CFTV, controle de acesso e incêndio.</p><a class="link" href="/docs/revista-infra-2019.pdf" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>Ler a matéria (PDF)</a></div>
+              <div class="press__body"><p class="press__year">2019</p><h3>Revista INFRA: a empresa que fez a diferença</h3><p>Indicação da Serasa Experian, cliente atendida desde 2016 com instalação e manutenção de CFTV, controle de acesso e incêndio.</p><ul class="client-row" role="list"><li><g-client name="serasa-experian" decorative></li></ul><a class="link" href="/docs/revista-infra-2019.pdf" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>Ler a matéria (PDF)</a></div>
             </article>
             <article class="press__item" data-reveal="rise" style="--delay: .2s">
               <figure><g-img name="encontro-johnson-controls-2019" alt="Grupo de parceiros e clientes no encontro da Johnson Controls para a América Latina" sizes="(min-width: 860px) 50vw, 100vw"></figure>

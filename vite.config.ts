@@ -37,6 +37,21 @@ type Manifest = {
   fotos: Record<string, { w: number; h: number; widths: number[] }>;
   marcas: Record<string, { w: number; h: number }>;
   marca: Record<string, { w: number; h: number }>;
+  clientes?: Record<string, { w: number; h: number }>;
+};
+
+/** Nome oficial de cada cliente (texto alternativo padrão do logo) */
+const CLIENTS: Record<string, string> = {
+  'serasa-experian': 'Serasa Experian',
+  nestle: 'Nestlé Brasil',
+  'gru-airport': 'GRU Airport',
+  aena: 'Aena Aeroportos do Nordeste',
+  hinode: 'Hinode Cosméticos',
+  'cacau-show': 'Cacau Show',
+  'copa-energia': 'Copa Energia',
+  'fs-bioenergia': 'FS Bioenergia',
+  bayer: 'Bayer',
+  icesp: 'Instituto do Câncer do Estado de São Paulo (ICESP)',
 };
 
 const readManifest = (): Manifest =>
@@ -75,6 +90,23 @@ function brandLogo(a: Record<string, string>, man: Manifest): string {
   if (!m) throw new Error(`<g-logo>: marca "${a.name}" não existe no manifesto`);
   const cls = a.class ? ` class="${a.class}"` : '';
   return `<img src="/img/marcas/${a.name}.webp" width="${m.w}" height="${m.h}" alt="${a.alt ?? ''}"${cls} loading="lazy" decoding="async">`;
+}
+
+/**
+ * <g-client name="nestle" [alt="…"] [decorative] [class="…"]> → logo do cliente (WebP com dimensões).
+ * --ar (proporção) permite ao CSS equilibrar logos largos e quadrados pelo mesmo "peso" visual.
+ * decorative → alt="" (quando o nome já está escrito ao lado, para não ser lido duas vezes).
+ */
+function clientLogo(a: Record<string, string>, man: Manifest): string {
+  const name = a.name ?? '';
+  const m = man.clientes?.[name];
+  if (!m || !CLIENTS[name]) throw new Error(`<g-client>: cliente "${name}" não existe (manifesto/CLIENTS)`);
+  const alt = 'decorative' in a ? '' : (a.alt ?? CLIENTS[name]);
+  const cls = a.class ? ` ${a.class}` : '';
+  return (
+    `<img class="client-logo${cls}" src="/img/clientes/${name}.webp" width="${m.w}" height="${m.h}" alt="${alt}"` +
+    ` style="--ar: ${(m.w / m.h).toFixed(3)}" loading="lazy" decoding="async">`
+  );
 }
 
 /**
@@ -140,6 +172,7 @@ function sitePlugin(): Plugin {
         html = html.replace(/<g-img\s([^>]*?)\/?>(?:<\/g-img>)?/g, (_, raw: string) => picture(attrs(raw), man));
         html = html.replace(/<g-logo\s([^>]*?)\/?>(?:<\/g-logo>)?/g, (_, raw: string) => brandLogo(attrs(raw), man));
         html = html.replace(/<g-icon\s([^>]*?)\/?>(?:<\/g-icon>)?/g, (_, raw: string) => icon(attrs(raw)));
+        html = html.replace(/<g-client\s([^>]*?)\/?>(?:<\/g-client>)?/g, (_, raw: string) => clientLogo(attrs(raw), man));
         // 4) navegação ativa (aria-current na página, .is-parent na seção)
         html = html.replace(/<a([^>]*?)data-route="([^"]+)"([^>]*)>/g, (_, pre: string, r: string, post: string) => {
           const exact = r === route;

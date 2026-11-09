@@ -186,6 +186,22 @@
 .case__metric span:last-child { font-size: var(--fs-s); color: #c9d9df; max-width: 26ch; line-height: 1.4; }
 .case__text { color: #a9c0c9; font-size: var(--fs-s); }
 .cases__foot { margin-top: 40px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.cases__also { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.cases__also > p { color: #c9d9df; font-size: var(--fs-s); }
+
+/* Logo do cliente como título do card (o alt do logo é o nome da empresa) */
+.case__brand { display: flex; align-items: center; min-height: 72px; margin-bottom: 8px; }
+.case__brand .client-logo { --size: 70px; max-height: 72px; }
+.case:not(.case--light) .case__brand { width: fit-content; min-height: 80px; padding: 12px 22px; border-radius: 10px; background: var(--white); }
+.case:not(.case--light) .case__brand .client-logo { --size: 60px; max-height: 56px; }
+
+/* Logos citados logo depois de um parágrafo, e nas referências dos segmentos */
+p + .client-row { margin-top: 16px; }
+.prose .client-row { padding-left: 0; }
+.prose .client-row li + li { margin-top: 0; }
+.segment__ref { display: grid; gap: 10px; }
+.segment__ref .client-row { gap: 12px 24px; }
+.segment__ref .client-logo { --size: 46px; }
 @media (max-width: 760px) { .cases__grid { grid-template-columns: 1fr; } }
 
 /* light variant (portfólio) */

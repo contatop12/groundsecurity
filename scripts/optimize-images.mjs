@@ -5,6 +5,7 @@
  *
  *  fotos   → AVIF + WebP em várias larguras (srcset responsivo), sem metadados
  *  marcas  → logos de fabricantes: recorte de bordas + WebP leve
+ *  clientes → logos de clientes: recorte, transparência preservada, WebP 2×
  *  marca   → logo Ground (WebP + PNG p/ schema), símbolo SVG, favicons e ícones PWA
  *
  * Uso: node scripts/optimize-images.mjs
@@ -88,6 +89,36 @@ async function brands() {
   }
 }
 
+/**
+ * Logos de clientes (assets-src/clientes/*.svg|png) → public/img/clientes/<nome>.webp
+ * Mantém a transparência (aparecem sobre fundos claros e escuros), recorta bordas vazias
+ * e gera altura 2× da maior exibição (~62 px). Fontes de cada arquivo: assets-src/clientes/FONTES.md
+ */
+async function clients() {
+  const dir = path.join(SRC, 'clientes');
+  if (!existsSync(dir)) return;
+  await mkdir(path.join(OUT, 'clientes'), { recursive: true });
+  manifest.clientes = {};
+  for (const file of await readdir(dir)) {
+    if (!/\.(svg|png|webp|jpe?g)$/i.test(file)) continue;
+    const name = path.parse(file).name;
+    const input = path.join(dir, file);
+    const isVector = file.toLowerCase().endsWith('.svg');
+    const trimmed = await sharp(input, isVector ? { density: 600 } : {})
+      .ensureAlpha()
+      .trim({ threshold: 4 })
+      .toBuffer();
+    const resized = sharp(trimmed).resize({ height: 144, width: 720, fit: 'inside', withoutEnlargement: !isVector });
+    const lossy = await resized.clone().webp({ quality: 82, alphaQuality: 85, effort: 6 }).toBuffer();
+    const lossless = await resized.clone().webp({ lossless: true, effort: 6 }).toBuffer();
+    const best = lossy.length < lossless.length ? lossy : lossless;
+    await writeFile(path.join(OUT, 'clientes', `${name}.webp`), best);
+    const meta = await sharp(best).metadata();
+    manifest.clientes[name] = { w: meta.width, h: meta.height };
+    console.log(`cliente ${name.padEnd(34)} ${meta.width}×${meta.height}  ${kb(best.length)}`);
+  }
+}
+
 async function brand() {
   const dir = path.join(SRC, 'marca');
   await mkdir(path.join(OUT, 'marca'), { recursive: true });
@@ -142,6 +173,7 @@ await mkdir(path.join(ROOT, 'src', 'data'), { recursive: true });
 await mkdir(path.join(ROOT, 'scripts', '.cache'), { recursive: true });
 await photos();
 await brands();
+await clients();
 await brand();
 
 // PDF da matéria (sem recompressão — 1 página)
