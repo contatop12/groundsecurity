@@ -107,6 +107,9 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em
 ul[role='list'], ol[role='list'] { list-style: none; padding: 0; }
 p, li, dd { text-wrap: pretty; }
 h1, h2, h3, h4 { text-wrap: balance; }
+/* Rede de segurança: só quebra uma palavra (ou e-mail) se ela sozinha não couber na linha */
+body { overflow-wrap: break-word; }
+.t-hyphens { hyphens: auto; }
 :target { scroll-margin-top: calc(var(--header-h) + 24px); }
 ::selection { background: var(--teal-300); color: var(--navy-950); }
 
@@ -191,7 +194,14 @@ h4, .t-h4 { font-size: var(--fs-l); font-weight: 650; font-stretch: 104%; line-h
   align-items: end; gap: 24px 64px;
 }
 .section-head--split .lead { justify-self: start; }
-@media (max-width: 860px) { .section-head--split { grid-template-columns: 1fr; } }
+/* Coluna do título = (largura − gap) × 1.1/2: a fonte do h2 não passa da largura da palavra mais longa
+   ("comercializamos", ~10.3em) — evita vazar entre 860 e 1100px */
+.section-head--split { container-type: inline-size; }
+.section-head--split > h2 { font-size: min(var(--fs-3xl), calc((100cqi - 64px) * 0.05)); }
+@media (max-width: 860px) {
+  .section-head--split { grid-template-columns: 1fr; }
+  .section-head--split > h2 { font-size: min(var(--fs-3xl), 9.2cqi); }
+}
 
 .stack > * + * { margin-top: var(--stack, 1rem); }
 .cluster { display: flex; flex-wrap: wrap; gap: var(--gap, 12px); align-items: center; }

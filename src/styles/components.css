@@ -370,6 +370,8 @@ body.menu-open .wa-float { transform: translateY(140%); }
 .site-footer h2 { font-size: var(--fs-s); font-weight: 650; font-stretch: 108%; color: var(--white); letter-spacing: 0; margin-bottom: 16px; }
 .site-footer ul { list-style: none; padding: 0; display: grid; gap: 10px; }
 .site-footer address { font-style: normal; display: grid; gap: 10px; }
-.site-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 22px; border-top: 1px solid rgb(255 255 255 / 0.08); font-size: var(--fs-xs); }
+/* O fim do rodapé reserva a altura do botão flutuante do WhatsApp (60px + margem inferior),
+   para "Desenvolvido por" não ficar atrás dele quando a página chega ao fim. */
+.site-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 22px calc(60px + max(18px, env(safe-area-inset-bottom)) + 14px); border-top: 1px solid rgb(255 255 255 / 0.08); font-size: var(--fs-xs); }
 @media (max-width: 960px) { .site-footer__top { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .site-footer__top { grid-template-columns: 1fr; gap: 36px; } }
