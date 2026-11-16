@@ -15,9 +15,11 @@
   border-radius: var(--r-s);
   background: var(--bg); color: var(--fg);
   font-size: var(--fs-s); font-weight: 650; font-stretch: 104%; letter-spacing: 0.005em;
-  text-decoration: none; white-space: nowrap;
+  text-decoration: none; white-space: nowrap; max-width: 100%;
   transition: color 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), transform 0.2s var(--ease-out);
 }
+/* Celular estreito: rótulo longo quebra em 2 linhas em vez de passar da tela */
+@media (max-width: 480px) { .btn { white-space: normal; text-align: center; line-height: 1.25; padding-block: 12px; } }
 /* Varredura em faixas no hover — o mesmo gesto do domo do logotipo */
 .btn::before, .btn::after {
   content: ''; position: absolute; left: 0; right: 0; z-index: -1;
