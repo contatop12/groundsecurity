@@ -1,8 +1,8 @@
 # Redirecionamentos — Cloudflare Workers (static assets), Pages ou Netlify (equivalente ao .htaccess)
 # www → domínio sem www não cabe aqui (a Cloudflare não aceita redirect por domínio neste arquivo):
 # use a regra de redirecionamento do painel (ver README → Publicação).
-/blog                     /imprensa-e-eventos/          301
-/blog/                    /imprensa-e-eventos/          301
+# /blog/ e /blog/* NÃO ficam aqui: o Worker responde por eles (ver "Blog do Rankeando" no README). Enquanto o blog não tem post, o Worker
+# mantém o 301 de /blog/ para /imprensa-e-eventos/.
 /home/                    /                             301
 /revista-infra-2019.pdf   /docs/revista-infra-2019.pdf  301
 /2019/12/11/*             /                             301

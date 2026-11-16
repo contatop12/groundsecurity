@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Blog (posts do Rankeando): carregado só pelo modelo de página do blog (p12-kit/index.html).
+   Usa os tokens e componentes do site (base.css, components.css, sections.css); nada aqui muda as outras páginas.
+   ========================================================================== */
+
+/* ------------------------------ lista: cartões e filtros ----------------- */
+.chips { margin-bottom: clamp(28px, 4vw, 48px); }
+.chips ul { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px;
+  border-radius: 999px; border: 1px solid var(--mist-300); background: var(--white);
+  font-size: var(--fs-s); font-weight: 600; color: var(--navy-700); text-decoration: none;
+  transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+.chip span { font-size: var(--fs-xs); font-weight: 700; color: var(--slate-500); font-variant-numeric: tabular-nums; }
+.chip:hover, .chip:focus-visible { border-color: var(--teal-500); color: var(--teal-600); }
+.chip[aria-current='page'] { background: var(--navy-900); border-color: var(--navy-900); color: var(--white); }
+.chip[aria-current='page'] span { color: var(--teal-300); }
+.chips--paginas { margin: clamp(36px, 5vw, 64px) 0 0; }
+.chips--paginas ul { justify-content: center; }
+
+.post-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 2.5vw, 36px); }
+.post-grid__titulo { font-size: var(--fs-2xl); margin-bottom: clamp(28px, 4vw, 48px); }
+@media (max-width: 960px) { .post-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .post-grid { grid-template-columns: 1fr; } }
+
+.post-card { display: flex; }
+.post-card__link {
+  display: flex; flex-direction: column; width: 100%; overflow: hidden; text-decoration: none; color: inherit;
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--r-m);
+  transition: box-shadow 0.35s var(--ease-out), transform 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+}
+.post-card__link:hover, .post-card__link:focus-visible { border-color: var(--mist-300); box-shadow: var(--shadow-2); transform: translateY(-3px); }
+.post-card__media { display: block; aspect-ratio: 16 / 9; background: var(--mist-100); overflow: hidden; }
+.post-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.post-card__body { display: grid; gap: 10px; align-content: start; padding: clamp(18px, 2vw, 26px); flex: 1; }
+.post-card__cat { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--teal-600); }
+.post-card__title { font-size: var(--fs-xl); line-height: 1.15; }
+.post-card__lede { color: var(--text-soft); font-size: var(--fs-s); display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.post-card__meta { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 4px; font-size: var(--fs-xs); color: var(--slate-500); }
+
+/* ------------------------------ post -------------------------------------- */
+.page-hero .kicker a { color: inherit; text-decoration: none; }
+.page-hero .kicker a:hover { text-decoration: underline; }
+.post-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--fs-s); color: var(--slate-600); }
+.post-meta > :first-child { font-weight: 600; color: var(--navy-900); }
+.post { padding-top: clamp(40px, 5vw, 72px); }
+.post__cover { margin: 0 0 clamp(28px, 4vw, 48px); border-radius: var(--r-m); overflow: hidden; background: var(--mist-100); box-shadow: var(--shadow-1); }
+.post__cover img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.post__voltar { margin-top: clamp(40px, 5vw, 64px); }
+
+.toc { margin-bottom: clamp(28px, 4vw, 44px); padding: 22px 26px; background: var(--mist-100); border-radius: var(--r-m); }
+.toc__title { font-size: var(--fs-s); font-weight: 700; color: var(--navy-900); margin-bottom: 10px; }
+.toc ol { padding-left: 1.2em; display: grid; gap: 6px; }
+.toc li::marker { color: var(--teal-500); font-weight: 700; }
+.toc a { color: var(--navy-700); text-decoration: none; }
+.toc a:hover { color: var(--teal-600); text-decoration: underline; }
+
+/* Corpo do artigo (HTML do Rankeando dentro de .prose) */
+.post__body { max-width: none; }
+.post__body h2 { font-size: var(--fs-2xl); }
+.post__body h3 { font-size: var(--fs-xl); }
+.post__body h4 { margin-top: 1.6em; }
+.post__body ol { padding-left: 1.4em; }
+.post__body ol li::marker { color: var(--teal-600); font-weight: 700; }
+.post__body img { border-radius: var(--r-s); }
+.post__body figure { margin-block: 1.6em; }
+.post__body figcaption { margin-top: 8px; font-size: var(--fs-xs); color: var(--slate-500); }
+.post__body blockquote { padding: 4px 0 4px 22px; border-left: 3px solid var(--teal-500); color: var(--slate-700); font-size: var(--fs-l); }
+.post__body table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; font-size: var(--fs-s); }
+.post__body th, .post__body td { padding: 10px 14px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+.post__body th { background: var(--mist-100); color: var(--navy-900); }
+.post__body iframe { width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: var(--r-s); }
+.post__body hr { border: 0; border-top: 1px solid var(--line); margin-block: 2.2em; }
+.post__body code { padding: 2px 6px; border-radius: 4px; background: var(--mist-100); font-size: 0.92em; }
+.post__body pre { overflow-x: auto; padding: 16px 18px; border-radius: var(--r-s); background: var(--navy-950); color: #d6e6eb; }
+.post__body pre code { padding: 0; background: none; color: inherit; }
+
+/* Blocos que o Rankeando marca no conteúdo (estilo opcional pelo contrato; as classes não mudam) */
+.post__body .p12-linha-fina { font-size: var(--fs-l); color: var(--text-soft); }
+.post__body .p12-resumo { padding: 20px 24px; background: var(--mist-100); border-left: 3px solid var(--teal-500); border-radius: 0 var(--r-m) var(--r-m) 0; }
+.post__body .p12-leia-tambem { padding: 18px 22px; border: 1px solid var(--line); border-radius: var(--r-m); font-size: var(--fs-s); }
+.post__body .p12-fontes { font-size: var(--fs-xs); color: var(--slate-500); }
+.post__body .p12-caixa-titulo { font-weight: 700; color: var(--navy-900); }
+
+/* ------------------------------ caixa "Escrito por" (contrato: classe rankeando-assinatura) */
+.rankeando-assinatura {
+  display: flex; gap: 20px; align-items: flex-start; margin-top: clamp(36px, 5vw, 56px); padding: 24px;
+  background: var(--mist-100); border-radius: var(--r-m); border: 1px solid var(--line);
+}
+.rankeando-assinatura__foto { width: 88px; height: 88px; flex: none; border-radius: 50%; object-fit: cover; }
+.rankeando-assinatura__texto { display: grid; gap: 4px; min-width: 0; }
+.rankeando-assinatura__texto > * { margin: 0; }
+.rankeando-assinatura__rotulo { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--teal-600); }
+.rankeando-assinatura__nome { font-size: var(--fs-l); font-weight: 700; color: var(--navy-900); }
+.rankeando-assinatura__cargo { font-size: var(--fs-s); color: var(--slate-600); }
+.rankeando-assinatura__bio { margin-top: 8px; font-size: var(--fs-s); }
+.rankeando-assinatura__link { margin-top: 8px; font-size: var(--fs-s); }
+.rankeando-assinatura__link a { font-weight: 650; color: var(--teal-600); }
+@media (max-width: 520px) { .rankeando-assinatura { flex-direction: column; } }

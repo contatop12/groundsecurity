@@ -29,6 +29,7 @@ assets-src/        originais (fotos, logos, GIFs, PDF) — entrada do pipeline
 public/            arquivos servidos como estão (img, media, fonts, robots, llms, .htaccess…)
 scripts/           pipeline de otimização de assets
 vite.config.ts     dados do negócio (NAP), plugin de includes/<g-img>, sitemap e llms-full
+p12-kit/           modelo de página do blog (build) · worker/ Worker do blog e do webhook · migrations/ D1 · tests/
 ```
 
 ### Como editar
@@ -86,13 +87,46 @@ Boas práticas ficou em 81–82 apenas por causa do antivírus da máquina de te
 - Blocos “Em resumo” (answer capsules) no início de cada página de solução e FAQ visível para respostas diretas.
 - `robots.txt` liberando buscadores e sistemas de IA declarados; `sitemap.xml` com imagens e `llms-full.txt` **gerados no build** a partir do HTML final; `llms.txt` com resumo e links.
 - NAP idêntico em todas as páginas; meta geo; breadcrumbs visíveis.
-- Redirecionamentos do WordPress antigo (`/blog/` → imprensa, PDF da matéria, posts “lorem ipsum”, `/project/`, `/category/`, `/author/`, `/feed/`, `wp-*` → 410).
+- Redirecionamentos do WordPress antigo (`/blog/` → imprensa enquanto o blog não tem post, PDF da matéria, posts “lorem ipsum”, `/project/`, `/category/`, `/author/`, `/feed/`, `wp-*` → 410).
+
+## Blog do Rankeando
+
+O Rankeando escreve os posts do blog e os envia, assinados (HMAC), para `POST /api/p12/webhook`. O Worker grava no D1 `groundsecurity-blog` e passa a servir o blog com o cabeçalho, o rodapé e o CSS reais do site. Segue o contrato v3 (`CONTRATO.md` do pacote do blog): `ping`, `post.publicar`, `post.remover`, `categorias`, `categorias.listar`, `categorias.remover`, `posts.listar` e `post.ler`.
+
+| Peça | Onde |
+| --- | --- |
+| Recebimento, assinatura, eventos do contrato | `worker/p12/` (`webhook.ts`, `contrato.ts`, `store.ts`, `posts.ts`; `assinatura.ts` é a função do pacote, sem mudanças) |
+| Páginas: `/blog/`, `/blog/<slug>/`, `/blog/categoria/<slug>/`, sitemap e feed | `worker/p12/site.ts` (rotas) e `render.ts` (marcação) |
+| Modelo de página (cabeçalho, rodapé, CSS e JS reais) | `p12-kit/index.html`, gerado no build em `dist/p12-kit/` (nunca servido a visitantes: o Worker responde 404). O build falha se o modelo perder algum campo |
+| Estilo do blog | `src/styles/blog.css` (só o modelo o carrega; as outras páginas não mudam) |
+| Banco | `migrations/` |
+| Chave | Cloudflare Secret `RANKEANDO_WEBHOOK_SECRET` (nunca no repositório) |
+| Testes | `npm test` (assinatura, eventos, entrega repetida, categorias, listagem, páginas, sitemap, noindex) |
+
+**Como funciona**
+
+- `/blog/` lista os posts (12 por página, `?page=N`) com chips das categorias; `/blog/<slug>/` é o post (autor, sumário, caixa “Escrito por” quando o Rankeando manda `assinatura`, `BlogPosting` + `BreadcrumbList` + `FAQPage` em JSON-LD, canonical em `https://groundsecurity.com.br`, Open Graph com a capa); `/blog/categoria/<slug>/` lista uma categoria. Slug antigo de um post responde 301 para o atual.
+- `/sitemap.xml` é o arquivo do build com o `/blog/`, os posts e as categorias com post acrescentados; `/feed.xml` é o RSS do blog.
+- **Enquanto não há nenhum post, `/blog/` continua com o 301 para `/imprensa-e-eventos/`** (o que o site fazia antes). Por isso `/blog` e `/blog/` saíram do `public/_redirects`: quem responde por eles agora é o Worker. O `.htaccess` (Apache) mantém o redirecionamento, porque lá não existe Worker: o blog só funciona na Cloudflare.
+- Os posts só aparecem como o Rankeando os mandou; nada é inventado no site. O corpo passa por uma limpeza (sem `script`, `iframe` que não seja YouTube, formulários, `on*`, `javascript:`). O CSP das páginas do blog libera imagens `https:` (capas e fotos vêm do endereço do Rankeando) e o embed do YouTube.
+- Em `*.workers.dev` toda resposta do Worker leva `X-Robots-Tag: noindex`, como os arquivos estáticos.
+- O site não tem posts próprios, então `post.substituir` e `post.restaurar` não são declarados no `ping` (o Rankeando só os envia a quem declara); um post do Rankeando se atualiza com um novo `post.publicar`.
+
+**Ligar o blog (uma vez; cada passo cria algo na conta da Cloudflare, por isso é manual)**
+
+1. `npx wrangler d1 create groundsecurity-blog` e copiar o `database_id` impresso para `d1_databases` no `wrangler.jsonc` (hoje está o provisório `00000000-…`; **com ele o deploy falha**).
+2. `npx wrangler d1 migrations apply groundsecurity-blog --remote`
+3. `npx wrangler secret put RANKEANDO_WEBHOOK_SECRET` (colar a chave que o Rankeando mostra ao conectar o site).
+4. Publicar (push na `main` com o `database_id` real, ou `npm run deploy`).
+5. No Rankeando: **Integrações › Site**, colar o endereço de recebimento `https://groundsecurity.com.br/api/p12/webhook` e clicar em **Verificar**. Enquanto `groundsecurity.com.br` ainda estiver no WordPress, use o endereço do Worker: `https://groundsecurity.<subdomínio-da-conta>.workers.dev/api/p12/webhook`. A conexão é feita pelo próprio usuário no Rankeando.
+
+**Teste local** (nada vai para a Cloudflare): `npx wrangler d1 migrations apply groundsecurity-blog --local`, copie `.dev.vars.example` para `.dev.vars`, `npm run cf:dev` e envie os exemplos do pacote do Rankeando (corpo exato; assine com a chave de teste e o horário de agora, porque o `t` dos exemplos é antigo). Depois abra `/blog/`, o post e `/sitemap.xml`.
 
 ## Publicação
 
 ### Cloudflare Workers (configurado)
 
-O `wrangler.jsonc` publica o `dist/` como site estático no Worker **`groundsecurity`** (sem script de Worker): página 404 própria com status 404, URLs com barra final (`/sobre` → `/sobre/`), cabeçalhos de `public/_headers` e redirecionamentos de `public/_redirects`. O `.htaccess` fica fora do upload (`public/.assetsignore`).
+O `wrangler.jsonc` publica o `dist/` como site estático no Worker **`groundsecurity`**. O script do Worker (`worker/`) só roda nas rotas do blog e do recebimento de posts (`run_worker_first`, ver “Blog do Rankeando”); o resto é arquivo estático: página 404 própria com status 404, URLs com barra final (`/sobre` → `/sobre/`), cabeçalhos de `public/_headers` e redirecionamentos de `public/_redirects`. O `.htaccess` fica fora do upload (`public/.assetsignore`).
 
 **Deploy automático (Workers Builds)**: no painel, *Workers e Pages → groundsecurity → Configurações → Build*:
 
@@ -120,7 +154,7 @@ Diferença para o Apache: os caminhos antigos `wp-*` respondem 404 em vez de 410
 
 ### Outras hospedagens
 
-**Apache / hospedagem compartilhada**: envie o conteúdo de `dist/` (inclui `.htaccess` com HTTPS, domínio sem www, 301/410, cache, compressão e cabeçalhos de segurança).
+**Apache / hospedagem compartilhada** (sem o blog do Rankeando, que precisa do Worker): envie o conteúdo de `dist/` (inclui `.htaccess` com HTTPS, domínio sem www, 301/410, cache, compressão e cabeçalhos de segurança).
 
 **Cloudflare Pages / Netlify**: diretório de saída `dist`, comando `npm run build`. `_headers` e `_redirects` já estão em `public/`.
 

@@ -1,15 +1,45 @@
+/**
+ * Worker "groundsecurity": site estático (Vite → dist/) mais o recebimento dos posts do Rankeando e as páginas do blog.
+ *
+ * Antes do primeiro deploy com o blog (nada disso vai para o git):
+ *   1. npx wrangler d1 create groundsecurity-blog                      → copie o database_id para d1_databases abaixo
+ *   2. npx wrangler d1 migrations apply groundsecurity-blog --remote   → cria as tabelas (migrations/)
+ *   3. npx wrangler secret put RANKEANDO_WEBHOOK_SECRET                → a chave que o Rankeando mostra ao conectar o site
+ * Local: copie .dev.vars.example para .dev.vars (ignorado pelo git) e use `npm run cf:dev`.
+ */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   // Deve ser igual ao nome do Worker no painel da Cloudflare (Workers e Pages → groundsecurity)
   "name": "groundsecurity",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-11-06",
-  // Site 100% estático: sem script de Worker, só os arquivos gerados pelo Vite.
-  // Cabeçalhos e redirecionamentos ficam em public/_headers e public/_redirects.
+  // Cabeçalhos e redirecionamentos dos arquivos estáticos ficam em public/_headers e public/_redirects.
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
+    // Só estas rotas passam pelo Worker; todo o resto é arquivo estático servido direto.
+    //   /api/*                  recebimento dos posts do Rankeando (/api/p12/webhook)
+    //   /blog, /blog/*          lista, posts e categorias do blog (D1); sem posts, /blog/ continua levando a /imprensa-e-eventos/
+    //   /sitemap.xml, /feed.xml o sitemap do build mais os posts do Rankeando; o RSS do blog
+    //   /p12-kit/*              modelo de página gerado no build (o Worker responde 404 a visitantes)
+    "run_worker_first": ["/api/*", "/blog", "/blog/*", "/sitemap.xml", "/feed.xml", "/p12-kit/*"],
     // URL inexistente → conteúdo de /404.html com status 404
     "not_found_handling": "404-page",
     // /sobre → 301 para /sobre/ (mesmo formato das URLs canônicas e do sitemap)
     "html_handling": "auto-trailing-slash"
-  }
+  },
+
+  // Posts do Rankeando. database_id PROVISÓRIO: troque pelo id que `wrangler d1 create groundsecurity-blog` imprimir.
+  // Sem trocar, o deploy falha (e o site atual continua no ar, sem o blog).
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "groundsecurity-blog",
+      "database_id": "00000000-0000-0000-0000-000000000000", // TROCAR: id real do `wrangler d1 create groundsecurity-blog`
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  // Logs do Worker no painel (falhas do banco aparecem aqui; nenhum conteúdo de post é logado)
+  "observability": { "enabled": true }
 }

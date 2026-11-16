@@ -4,11 +4,13 @@
   "description": "Site institucional Ground Security Systems — HTML, CSS e TypeScript (Vite)",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && tsc --noEmit -p worker && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p worker",
+    "test": "tsx --test tests/*.test.ts",
     "cf:dev": "npm run build && wrangler dev",
     "cf:check": "npm run build && wrangler deploy --dry-run",
+    "cf:types": "wrangler types worker/worker-configuration.d.ts",
     "deploy": "npm run build && wrangler deploy",
     "assets:fonts": "python scripts/fonts.py",
     "assets:images": "node scripts/optimize-images.mjs",
@@ -32,6 +34,7 @@
     "@types/node": "^26.6.6",
     "lucide-static": "^1.70.0",
     "sharp": "^0.35.5",
+    "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vite": "^8.3.6",
     "wrangler": "^4.158.0"

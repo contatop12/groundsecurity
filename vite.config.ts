@@ -240,6 +240,25 @@ function htmlToMarkdown(html: string): string {
     .trim();
 }
 
+/**
+ * O Worker (worker/p12/render.ts) monta as páginas do blog a partir de dist/p12-kit/index.html, a página-modelo do build
+ * (cabeçalho, rodapé, CSS e JS reais do site). Se um campo sumir, o blog quebraria só em produção: o build falha aqui.
+ */
+const CAMPOS_DO_MODELO = ['@@titulo@@', '@@descricao@@', '@@url@@', '@@ogTipo@@', '@@ld@@', '@@main@@', '<meta name="robots" content="noindex, nofollow">'];
+function verificarModeloDoBlog(arquivo: string): void {
+  let html: string;
+  try {
+    html = readFileSync(arquivo, 'utf8');
+  } catch {
+    throw new Error('p12-kit: o modelo de página do blog não foi gerado (dist/p12-kit/index.html)');
+  }
+  const faltam = CAMPOS_DO_MODELO.filter((c) => !html.includes(c));
+  if (faltam.length) throw new Error(`p12-kit: o modelo de página do blog perdeu ${faltam.join(', ')}`);
+  if (!/<link rel="stylesheet"[^>]*href="\/assets\/[^"]+\.css"/.test(html) || !/<header class="site-header"/.test(html) || !/<footer class="site-footer"/.test(html)) {
+    throw new Error('p12-kit: o modelo de página do blog está sem o CSS, o cabeçalho ou o rodapé do site');
+  }
+}
+
 function seoFilesPlugin(): Plugin {
   let outDir = 'dist';
   return {
@@ -258,7 +277,11 @@ function seoFilesPlugin(): Plugin {
         }
       };
       walk(outDir);
+      // O modelo de página do blog (p12-kit/) só serve ao Worker: fora do sitemap e do llms-full.txt, e conferido aqui.
+      const kit = path.join(outDir, 'p12-kit', 'index.html');
+      verificarModeloDoBlog(kit);
       const pagesData = files
+        .filter((f) => path.relative(outDir, f).split(path.sep)[0] !== 'p12-kit')
         .map((f) => {
           const html = readFileSync(f, 'utf8');
           const rel = path.relative(outDir, f).split(path.sep).join('/');
