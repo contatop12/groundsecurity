@@ -29,13 +29,12 @@
     "html_handling": "auto-trailing-slash"
   },
 
-  // Posts do Rankeando. database_id PROVISÓRIO: troque pelo id que `wrangler d1 create groundsecurity-blog` imprimir.
-  // Sem trocar, o deploy falha (e o site atual continua no ar, sem o blog).
+  // Posts do Rankeando (D1 groundsecurity-blog, criado em 17/11/2026).
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "groundsecurity-blog",
-      "database_id": "00000000-0000-0000-0000-000000000000", // TROCAR: id real do `wrangler d1 create groundsecurity-blog`
+      "database_id": "3b5e48a2-dc98-46d7-8411-f0b7ccad8cdd",
       "migrations_dir": "migrations"
     }
   ],
