@@ -6,3 +6,5 @@ scripts/.cache/
 Thumbs.db
 .wrangler/
 .dev.vars*
+.env
+.env*.local
