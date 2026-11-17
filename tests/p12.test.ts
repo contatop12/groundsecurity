@@ -314,3 +314,11 @@ test('respostas do Worker em *.workers.dev levam X-Robots-Tag: noindex; no domí
   assert.equal((await servirSite(new Request('https://groundsecurity.com.br/blog/a/b/c'), env)).status, 404);
   assert.equal(comNoindexNoWorkersDev(new Response('x'), 'groundsecurity.com.br').headers.get('x-robots-tag'), null);
 });
+
+test('sem post nenhum, /blog/ leva a /imprensa-e-eventos/ com 302 (temporário: o navegador não guarda e o link do menu abre o blog quando chegar o 1º post)', async () => {
+  const vazio = { prepare: () => ({ bind() { return this; }, all: async () => ({ results: [] }) }) };
+  const env = { ASSETS: { fetch: async () => new Response('ok') }, DB: vazio } as unknown as Env;
+  const res = await servirSite(new Request('https://groundsecurity.com.br/blog/'), env);
+  assert.equal(res.status, 302);
+  assert.equal(res.headers.get('location'), '/imprensa-e-eventos/');
+});

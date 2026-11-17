@@ -152,10 +152,10 @@
 .menu-btn[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
 .menu-btn[aria-expanded='true'] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); width: 24px; }
 
-@media (max-width: 1140px) {
+@media (max-width: 1300px) {
   .header-phone span { display: none; }
 }
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
   :root { --header-h: 68px; }
   .brand img { height: 44px; }
   .nav, .header-phone { display: none; }

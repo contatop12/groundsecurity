@@ -88,5 +88,5 @@ function initMobileMenu(): void {
       }
     }
   });
-  window.matchMedia('(min-width: 1025px)').addEventListener('change', (m) => m.matches && set(false));
+  window.matchMedia('(min-width: 1181px)').addEventListener('change', (m) => m.matches && set(false));
 }

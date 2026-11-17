@@ -3,7 +3,7 @@
 //   /blog/<slug>/            um post do Rankeando (D1), com o cabeçalho, o rodapé e o CSS reais do site
 //   /blog/categoria/<slug>/  uma categoria do Rankeando
 //   /sitemap.xml, /feed.xml  o sitemap do build com os posts e as categorias; o RSS do blog
-// Enquanto não há post nenhum, /blog/ continua levando a /imprensa-e-eventos/ (301), como o site fazia antes do blog existir.
+// Enquanto não há post nenhum, /blog/ leva a /imprensa-e-eventos/ com 302 (temporário: o link "Blog" do menu passa a abrir o blog no 1º post).
 import { SLUG } from './contrato';
 import { prepararConteudo } from './conteudo';
 import { urlDoPost } from './posts';
@@ -74,8 +74,8 @@ async function servirBlog(env: SiteEnv, url: URL, request: Request): Promise<Res
   const store = new D1Store(env.DB);
   try {
     const [resumos, categorias] = await Promise.all([store.resumos(), store.categorias()]);
-    // Sem posts, o blog ainda não existe: continua o redirecionamento de antes.
-    if (!resumos.length) return redirect('/imprensa-e-eventos/');
+    // Sem posts, o blog ainda não existe: redireciona, mas com 302 para o navegador não guardar.
+    if (!resumos.length) return redirect('/imprensa-e-eventos/', 302);
     const paginas = Math.ceil(resumos.length / POR_PAGINA);
     const numero = numeroDaPagina(url);
     if (!numero || numero > paginas) return await naoExiste(env, url.origin);
